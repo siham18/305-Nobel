@@ -37,7 +37,7 @@ public class FXMLExampleController implements Initializable{
         Parent queryResult = (Parent)fxml.load();
         
         NewWindowController controller = fxml.<NewWindowController>getController();
-        controller.setChoices(transfer);
+        //controller.setChoices(transfer);
         
         Scene newScene = new Scene(queryResult);
         Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
