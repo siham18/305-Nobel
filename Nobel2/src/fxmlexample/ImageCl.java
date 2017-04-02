@@ -37,14 +37,15 @@ public class ImageCl {
         if(this.name.contains("(")){
             int start = this.name.indexOf("(");
             int end = this.name.indexOf(")");
-            String temp = this.name.substring(start+1, end-1);
+            String temp = this.name.substring(start+1, end);
             this.name = temp.toLowerCase();
+            System.out.println(this.name);
         }
         
         url = this.Beginning  +this.category +
                 "/laureates/" + this.year + "/" + this.name + "_postcard.jpg";
         
-        //URL url2 = new URL(url);
+       
         return url;
     }
     
