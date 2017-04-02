@@ -102,7 +102,7 @@ public class Laureate {
         Field[] fields = this.getClass().getDeclaredFields();
         for (Field f : fields){
             if (f.get(this)==null)
-                f.set(this, "***");
+                f.set(this, "0");
         }
     }
     public String getShare(){

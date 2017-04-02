@@ -5,7 +5,6 @@
  */
 package fxmlexample;
 
-//import nobelprizeproject.Laureate;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -36,6 +35,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -67,7 +67,24 @@ public class NewWindowController implements Initializable{
             "bornCountry", "diedCountry", "bornCity", "diedCity", "firstname", "surname");
     
     @FXML void newPage (ActionEvent event) throws IOException {
-        Parent queryResult = FXMLLoader.load(getClass().getResource("fxml_example.fxml"));
+        Parent queryResult = FXMLLoader.load(getClass().getResource("Front.fxml"));
+        Scene newScene = new Scene(queryResult);
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(newScene);
+        stage.show();
+    }
+    @FXML public void openLaureate(ActionEvent event) throws Exception{
+
+        FXMLLoader fxmll = new FXMLLoader(getClass().getResource("winner.fxml"));
+        Parent queryResult = (Parent)fxmll.load();
+        
+        Laureate chosen = table.getSelectionModel().getSelectedItem();
+        
+        WinnerController controller = fxmll.<WinnerController>getController();
+        controller.picData(chosen.category, chosen.year, chosen.surname.toLowerCase());
+        
+        System.out.println(chosen.category);
+        
         Scene newScene = new Scene(queryResult);
         Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
         stage.setScene(newScene);
@@ -76,14 +93,7 @@ public class NewWindowController implements Initializable{
     public void fillValue(){
         choices.getSelectionModel().getSelectedItem();
     }
-    public void setChoices(ObservableList<String> transfer){
-      for (Object each: table.getColumns()){
-          TableColumn col = (TableColumn)each;
-          if(transfer.contains(col.getText())){
-              col.setVisible(true);
-          }
-      }
-    }
+
     public void inputData(){
         table.getColumns().get(0).setVisible(false);
         table.getColumns().get(0).setVisible(true);
@@ -121,6 +131,7 @@ public class NewWindowController implements Initializable{
         url += getInput();
         
         URL nobelUrl = new URL(url);
+        System.out.println(url);
         URLConnection con = nobelUrl.openConnection();
         BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
         String inputLine;
@@ -141,6 +152,14 @@ public class NewWindowController implements Initializable{
                 if(person.getSurname().contains(fieldText.getText())){
                     everyoneList.add(person);
                 }
+            } else if ("category".equals(choices.getSelectionModel().getSelectedItem())){
+                if(person.getCategory().contains(comboField.getSelectionModel().getSelectedItem().toString()))
+                    everyoneList.add(person);
+            }   else if  ("year".equals(choices.getSelectionModel().getSelectedItem())){
+                if(Integer.valueOf(person.getYear()) >=(((int)Math.round(date.getValue()))) && 
+                        Integer.valueOf(person.getYear()) <=(((int)Math.round(dateTo.getValue())))){
+                    everyoneList.add(person);
+                }
             } else {
                 everyoneList.add(person);
             }
@@ -148,15 +167,7 @@ public class NewWindowController implements Initializable{
         }
     }
     private String getInput() {
-        String returnValue = "";
-        if("category".equals(choices.getSelectionModel().getSelectedItem())||
-                "year".equals(choices.getSelectionModel().getSelectedItem())||
-                "numberOfLaureates".equals(choices.getSelectionModel().getSelectedItem())  ){
-            returnValue += "prize.json?";
-        }
-        else {
-            returnValue += "laureate.json?";
-        }
+        String returnValue = "laureate.json?";
         if ("gender".equals(choices.getSelectionModel().getSelectedItem())){
             returnValue += "gender=" + gender.getSelectedToggle().getUserData();
         }
@@ -186,9 +197,6 @@ public class NewWindowController implements Initializable{
         }
         return returnValue;
     }   
-    public void grabPicture() throws MalformedURLException, IOException{
-        
-    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         choices.getItems().setAll(content);
@@ -198,6 +206,12 @@ public class NewWindowController implements Initializable{
         org.setToggleGroup(gender);
         org.setUserData("org");
         female.setToggleGroup(gender);
+        for (Object each: table.getColumns()){
+          TableColumn col = (TableColumn)each;
+          if(content.contains(col.getText())){
+              col.setVisible(true);
+          }
+      }
         
         genderCol.setCellValueFactory(new PropertyValueFactory("gender"));
         yearCol.setCellValueFactory(new PropertyValueFactory("year"));
@@ -228,13 +242,13 @@ public class NewWindowController implements Initializable{
         public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
             if ("category".equals(newValue)){
                 comboField.getItems().clear();
-                comboField.getItems().addAll("physics", "english", "others");
+                comboField.getItems().addAll("physics", "medicine", "peace", "economics", "chemistry", "literature");
             }
             if ("bornCountry".equals(newValue) || "diedCountry".equals(newValue) || 
                     "bornCity".equals(newValue) || "diedCity".equals(newValue)||
                     "surname".equals(newValue) || "firstname".equals(newValue)){
                 fieldText.setVisible(true);
-                fieldText.setText("********Insert here***********");
+                fieldText.setText("**Insert here**");
             }
             else {
                 fieldText.setVisible(false);
@@ -249,7 +263,7 @@ public class NewWindowController implements Initializable{
                 female.setVisible(true);
                 org.setVisible(true);
             }
-            if ("bornIn".equals(newValue) || "diedIn".equals(newValue)){
+            if ("bornIn".equals(newValue) || "diedIn".equals(newValue) || "year".equals(newValue)){
                 date.setVisible(true);
                 dateTo.setVisible(true);
                 yearlabel.setVisible(true);
@@ -268,10 +282,6 @@ public class NewWindowController implements Initializable{
             }
             else {
                 comboField.setVisible(false);
-            }
-            if ("year".equals(newValue)){
-                date.setVisible(true);
-                dateTo.setVisible(true);
             }
         }
         });
