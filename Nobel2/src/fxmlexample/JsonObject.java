@@ -118,4 +118,20 @@ public class JsonObject {
             return list;
        } 
     }
+   
+   /**
+     *
+     * @return a list of all the laureates
+     * @author kimelkins
+     */
+    public ArrayList<LaureatesClass> getLaureates(){
+        js = Singleton.getInstance();
+        int len = js.prizes.size();
+        
+        ArrayList <LaureatesClass> list = new ArrayList <>();
+        for(int i = 0; i < len; i++){
+            list = js.prizes.get(i).getLaureateList(list);
+        }
+        return list;
+    }
 }
