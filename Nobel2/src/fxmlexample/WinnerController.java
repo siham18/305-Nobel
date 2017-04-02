@@ -54,7 +54,7 @@ public class WinnerController implements Initializable {
         laur = singleton.getLaur(singleton.getLastId());
         System.out.println(" -- " + laur.firstname + " -- ");
         prize = singleton.getPrize(laur);
-        //namef.setText(laur.firstname +" " +laur.surname);
+       
         FieldT.setText(prize.category);
         MotifT.setText(laur.motivation);
         ResT.setText(laur.bornCountry);
@@ -75,9 +75,10 @@ public class WinnerController implements Initializable {
                 n = laur.firstname;
             }
             ImageCl image = new ImageCl(prize.category, ""+prize.year, n.toLowerCase());
-            String im = image.getURL();
-            Image image2 = new Image(im);
             
+            String im = image.getURL();
+            System.out.println(im);
+            Image image2 = new Image(im);
             pic4.setImage(image2);
         }
         else{
