@@ -49,6 +49,7 @@ public class WinnerController implements Initializable {
      */
     
     public void fill(){
+        
         singleton = Singleton.getInstance();
         laur = singleton.getLaur(singleton.getLastId());
         System.out.println(" -- " + laur.firstname + " -- ");
