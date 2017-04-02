@@ -85,8 +85,9 @@ public class NewWindowController implements Initializable{
         controller.fill(chosen);
         
         Scene newScene = new Scene(queryResult);
-        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        Stage stage = new Stage();
         stage.setScene(newScene);
+       
         stage.show();
     }
     public void fillValue(){
