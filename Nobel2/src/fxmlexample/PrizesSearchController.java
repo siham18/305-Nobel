@@ -52,7 +52,6 @@ public class PrizesSearchController implements Initializable {
     public String cYearFrom;
     public String cYearTo;
     public String cCategory;
-    public String cSharing;
     public ArrayList<LaureatesClass> cLau;
     public Laureate data;
     
@@ -60,7 +59,7 @@ public class PrizesSearchController implements Initializable {
     
     ObservableList<String> lCategory = FXCollections.observableArrayList(
             "Physics", "Peace", "Literature", "Economics", "Medicine", "Chemistry");
-    ObservableList<String> lSharing = FXCollections.observableArrayList("1", "2","3","4");
+    //ObservableList<String> lSharing = FXCollections.observableArrayList("1", "2","3","4");
     public ObservableList prizesList = FXCollections.observableArrayList();
     
     @Override
@@ -74,13 +73,13 @@ public class PrizesSearchController implements Initializable {
         catagory.setValue("Physics");
 //        numLau.getItems().clear();
 //        numLau.getItems().addAll("1", "2","3","4");
-        numLau.setItems(lSharing);
-        numLau.setValue("1");
+        //numLau.setItems(lSharing);
+        //numLau.setValue("1");
         
         singleton = Singleton.getInstance(); 
         
         pCat.setCellValueFactory(new PropertyValueFactory("categoryCol"));
-        pSharing.setCellValueFactory(new PropertyValueFactory("sharingCol"));
+        //pSharing.setCellValueFactory(new PropertyValueFactory("sharingCol"));
         pLau.setCellValueFactory(new PropertyValueFactory("laureateCol"));
         pYear.setCellValueFactory(new PropertyValueFactory("yearWonCol"));
         //pYearFrom.setCellValueFactory(new PropertyValueFactory("yearFromCol"));
@@ -221,7 +220,7 @@ public class PrizesSearchController implements Initializable {
             cYearFrom = yearFrom.getText();
         }
     
-        cSharing = numLau.getValue().toString();
+        //cSharing = numLau.getValue().toString();
         cCategory = catagory.getValue().toString();
     
     }
@@ -245,24 +244,18 @@ public class PrizesSearchController implements Initializable {
         }
         return year >= sYearFrom && year <= sYearTo;
     }
-    
-    public boolean getNumShare(int sharing){
-        int sSharing = Integer.parseInt(cSharing);
-        return sSharing == sharing;
-    }
-    
+
     public void getData(){
         ObservableList dataList = FXCollections.observableArrayList();
         ArrayList<LaureatesClass> laur = getLau();
         int len = laur.size();
         
         for(int i = 0; i < len; i++){
-            if(laur.get(i).category.equals(cCategory) && getYear(laur.get(i).year) && getNumShare(laur.get(i).share)){
+            if(laur.get(i).category.equals(cCategory) && getYear(laur.get(i).year)){
                 String name = laur.get(i).firstname + " " + laur.get(i).surname;
                 dataList.add(laur.get(i).category);
                 dataList.add(name);
                 dataList.add(laur.get(i).year);
-                dataList.add(laur.get(i).share);
                 
             }
             prizesList.add(dataList);
