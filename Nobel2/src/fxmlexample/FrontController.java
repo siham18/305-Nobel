@@ -21,6 +21,7 @@ import javafx.scene.image.ImageView;
 public class FrontController implements Initializable {
 
     @FXML private Button general;
+    @FXML private Button prize;
     @FXML private Button lau;
     @FXML public ImageView im2;
     @FXML public ImageView im1;
@@ -39,6 +40,22 @@ public class FrontController implements Initializable {
     //Open Laureate
      @FXML public void openLaureate(ActionEvent event) throws Exception{
         FXMLLoader fxml = new FXMLLoader(getClass().getResource("LaureateSearch.fxml"));
+        Parent queryResult = (Parent)fxml.load();
+        
+        Scene newScene = new Scene(queryResult);
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(newScene);
+        stage.show();
+    }
+     
+     /**
+     * Opens the prize search form
+     * @param event the mouse click
+     * @throws Exception
+     * @author kimelkins
+     */
+    @FXML public void openPrize(ActionEvent event) throws Exception{
+        FXMLLoader fxml = new FXMLLoader(getClass().getResource("PrizesSearch.fxml"));
         Parent queryResult = (Parent)fxml.load();
         
         Scene newScene = new Scene(queryResult);

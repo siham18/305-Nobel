@@ -43,7 +43,7 @@ public class PrizesSearchController implements Initializable {
     @FXML private Button open;
     @FXML private Button search;
     @FXML public ChoiceBox numLau;
-    @FXML private TableView list;
+    @FXML private TableView<String> list;
     @FXML private TableColumn pCat;
     @FXML private TableColumn pSharing;
     @FXML private TableColumn pLau;
@@ -273,6 +273,7 @@ public class PrizesSearchController implements Initializable {
     }
     
     @FXML public void openLaureate(ActionEvent event) throws Exception{
+        
 
         String temp = list.getSelectionModel().getSelectedItems().toString();
         
@@ -290,5 +291,7 @@ public class PrizesSearchController implements Initializable {
         stage.setScene(new Scene(root1));  
         stage.show();
     }
-    
+    public void setData(){
+        
+    }
 }
