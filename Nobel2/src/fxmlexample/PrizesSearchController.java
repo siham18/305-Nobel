@@ -43,7 +43,7 @@ public class PrizesSearchController implements Initializable {
     @FXML private Button open;
     @FXML private Button search;
     @FXML public ChoiceBox numLau;
-    @FXML private TableView<String> list;
+    @FXML private ListView list;
     @FXML private TableColumn pCat;
     @FXML private TableColumn pSharing;
     @FXML private TableColumn pLau;
@@ -83,81 +83,6 @@ public class PrizesSearchController implements Initializable {
         pLau.setCellValueFactory(new PropertyValueFactory("laureateCol"));
         pYear.setCellValueFactory(new PropertyValueFactory("yearWonCol"));
         //pYearFrom.setCellValueFactory(new PropertyValueFactory("yearFromCol"));
-        
-        /*
-        // Gets the selected option from the category combobox
-        catagory.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-        @Override
-        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-        
-        //Gets the selected value in the category combobox
-        
-        if(newValue != null){
-        switch(newValue){
-        case "Physics":
-        System.out.println("Selected Category: Physics");
-        break;
-        case "Medicine":
-        System.out.println("Selected Category: Medicine");
-        break;
-        
-        case "Peace":
-        System.out.println("Selected Category: Peace");
-        break;
-        
-        case "Chemistry":
-        System.out.println("Selected Category: Chemistry");
-        break;
-        
-        case "Literature":
-        System.out.println("Selected Category: Literature");
-        break;
-        
-        case "Economics":
-        System.out.println("Selected Category: Economics");
-        break;
-        
-        default:
-        System.out.println("Default");
-        break;
-        }
-        }
-        
-        }
-        });
-        
-        //Gets the selected option from the numLau combobox
-        numLau.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-        @Override
-        public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-        
-        //Gets the selected value in the category combobox
-        if(newValue != null){
-        switch(newValue){
-        case "1":
-        System.out.println("Selected Category: 1");
-        break;
-        case "2":
-        System.out.println("Selected Category: 2");
-        break;
-        
-        case "3":
-        System.out.println("Selected Category: 3");
-        break;
-        
-        case "4":
-        System.out.println("Selected Category: 4");
-        break;
-        
-        default:
-        System.out.println("Default");
-        break;
-        }
-        }
-        
-        }
-        });
-       */
         
     } 
     
@@ -253,13 +178,16 @@ public class PrizesSearchController implements Initializable {
         for(int i = 0; i < len; i++){
             if(laur.get(i).category.equals(cCategory) && getYear(laur.get(i).year)){
                 String name = laur.get(i).firstname + " " + laur.get(i).surname;
-                dataList.add(laur.get(i).category);
-                dataList.add(name);
-                dataList.add(laur.get(i).year);
+                pCat.getColumns().add(laur.get(i).category);
+                pLau.getColumns().add(name);
+                pYear.getColumns().add(laur.get(i).year);
+                //dataList.add(laur.get(i).category);
+                //dataList.add(name);
+                //dataList.add(laur.get(i).year);
                 
             }
-            prizesList.add(dataList);
-            dataList = null;
+            //prizesList.add(dataList);
+            //dataList = null;
         }
         
         

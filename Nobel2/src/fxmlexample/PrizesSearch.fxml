@@ -47,7 +47,7 @@
                      </children>
                   </HBox>
                   <Button fx:id="open" layoutX="341.0" layoutY="143.0" mnemonicParsing="false" onAction="#openLaureate" prefHeight="27.0" prefWidth="126.0" text="Open" />
-                  <Button fx:id="search" mnemonicParsing="false" onAction="#search" prefHeight="27.0" prefWidth="126.0" text="Search">
+                  <Button fx:id="search" mnemonicParsing="false" onAction="#getData" prefHeight="27.0" prefWidth="126.0" text="Search">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
