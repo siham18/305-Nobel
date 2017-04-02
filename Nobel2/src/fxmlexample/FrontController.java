@@ -28,7 +28,7 @@ public class FrontController implements Initializable {
 
     //Open General
     @FXML public void openGeneral(ActionEvent event) throws Exception{
-        FXMLLoader fxml = new FXMLLoader(getClass().getResource("fxml_example.fxml"));
+        FXMLLoader fxml = new FXMLLoader(getClass().getResource("NewWindow.fxml"));
         Parent queryResult = (Parent)fxml.load();
         
         Scene newScene = new Scene(queryResult);

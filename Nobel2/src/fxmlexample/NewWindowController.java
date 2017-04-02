@@ -75,15 +75,14 @@ public class NewWindowController implements Initializable{
     }
     @FXML public void openLaureate(ActionEvent event) throws Exception{
 
-        FXMLLoader fxmll = new FXMLLoader(getClass().getResource("winner.fxml"));
+        FXMLLoader fxmll = new FXMLLoader(getClass().getResource("Bio.fxml"));
         Parent queryResult = (Parent)fxmll.load();
         
         Laureate chosen = table.getSelectionModel().getSelectedItem();
         
-        WinnerController controller = fxmll.<WinnerController>getController();
-       // controller.picData(chosen.category, chosen.year, chosen.surname.toLowerCase());
-        
-        System.out.println(chosen.category);
+        BioController controller = fxmll.<BioController>getController();
+        controller.picData(chosen);
+        controller.fill(chosen);
         
         Scene newScene = new Scene(queryResult);
         Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
