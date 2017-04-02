@@ -17,13 +17,13 @@
                      <font>
                         <Font size="21.0" />
                      </font></Label>
-                  <Label fx:id="bornT" layoutX="272.0" layoutY="88.0" prefHeight="17.0" prefWidth="116.0" text="Label" wrapText="true" />
-                  <Label fx:id="ResT" layoutX="298.0" layoutY="130.0" prefHeight="17.0" prefWidth="113.0" text="Label" wrapText="true" />
-                  <Label fx:id="MotifT" layoutX="232.0" layoutY="245.0" prefHeight="55.0" prefWidth="140.0" text="Label" wrapText="true" />
-                  <Label fx:id="FieldT" layoutX="310.0" layoutY="172.0" prefHeight="17.0" prefWidth="90.0" text="Label" wrapText="true" />
+                  <Label fx:id="bornT" layoutX="272.0" layoutY="88.0" prefHeight="36.0" prefWidth="141.0" text="Label" wrapText="true" />
+                  <Label fx:id="ResT" layoutX="298.0" layoutY="130.0" prefHeight="31.0" prefWidth="113.0" text="Label" wrapText="true" />
+                  <Label fx:id="MotifT" layoutX="24.0" layoutY="292.0" prefHeight="93.0" prefWidth="356.0" text="Label" wrapText="true" />
+                  <Label fx:id="FieldT" layoutX="298.0" layoutY="172.0" prefHeight="34.0" prefWidth="101.0" text="Label" wrapText="true" />
                   <Label layoutX="228.0" layoutY="85.0" prefHeight="22.0" prefWidth="63.0" text="Born: " />
                   <Label layoutX="228.0" layoutY="130.0" prefHeight="17.0" prefWidth="62.0" text="Country:" />
-                  <Label layoutX="227.0" layoutY="215.0" prefHeight="17.0" prefWidth="74.0" text="Motivation:" />
+                  <Label layoutX="23.0" layoutY="271.0" prefHeight="17.0" prefWidth="74.0" text="Motivation:" />
                   <Label layoutX="228.0" layoutY="172.0" prefHeight="17.0" prefWidth="63.0" text="Category:" />
                </children>
             </AnchorPane>
