@@ -81,7 +81,7 @@ public class NewWindowController implements Initializable{
         Laureate chosen = table.getSelectionModel().getSelectedItem();
         
         WinnerController controller = fxmll.<WinnerController>getController();
-        controller.picData(chosen.category, chosen.year, chosen.surname.toLowerCase());
+       // controller.picData(chosen.category, chosen.year, chosen.surname.toLowerCase());
         
         System.out.println(chosen.category);
         
