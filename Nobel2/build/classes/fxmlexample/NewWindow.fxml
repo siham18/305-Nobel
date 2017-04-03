@@ -28,7 +28,7 @@
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <children>
-                              <ListView fx:id="choices" onMouseClicked="#fillValue" prefHeight="192.0" prefWidth="1198.0" />
+                              <ListView fx:id="choices" onMouseClicked="#fillValue" prefHeight="192.0" prefWidth="1198.0" AnchorPane.bottomAnchor="20.0" AnchorPane.topAnchor="20.0" />
                            </children>
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
@@ -47,15 +47,18 @@
                                     <ComboBox fx:id="comboField" prefHeight="71.0" prefWidth="724.0" promptText="choices" visible="false" />
                                     <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                        <children>
-                                          <Button mnemonicParsing="false" onAction="#newPage" prefHeight="57.0" prefWidth="198.0" text="BackButton" />
-                                          <Button mnemonicParsing="false" onAction="#addSearch" prefHeight="78.0" prefWidth="192.0" text="NarrowSearch" />
-                                          <Button fx:id="confirmButton" mnemonicParsing="false" onAction="#newSearch" prefHeight="78.0" prefWidth="192.0" text="NewSearch" />
+                                          <Button mnemonicParsing="false" onAction="#newPage" prefHeight="57.0" prefWidth="128.0" text="BackButton" />
+                                          <Button mnemonicParsing="false" text="Button" visible="false" />
+                                          <Button fx:id="narrow" mnemonicParsing="false" onAction="#addSearch" prefHeight="57.0" prefWidth="147.0" text="NarrowSearch" />
+                                          <Button mnemonicParsing="false" text="Button" visible="false" />
+                                          <Button fx:id="confirmButton" mnemonicParsing="false" onAction="#newSearch" prefHeight="57.0" prefWidth="165.0" text="NewSearch" />
                                        </children>
                                     </HBox>
                                     <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <children>
-                                          <Slider fx:id="date" max="2017.0" min="1900.0" minorTickCount="5" prefHeight="55.0" prefWidth="294.0" showTickLabels="true" showTickMarks="true" visible="false" />
-                                          <Slider fx:id="dateTo" max="2017.0" min="1900.0" minorTickCount="5" prefHeight="55.0" prefWidth="294.0" showTickLabels="true" showTickMarks="true" value="1900.0" visible="false" />
+                                          <Slider fx:id="date" max="2017.0" min="1900.0" minorTickCount="5" prefHeight="55.0" prefWidth="254.0" showTickLabels="true" showTickMarks="true" visible="false" />
+                                          <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="91.0" text="Button" visible="false" />
+                                          <Slider fx:id="dateTo" max="2017.0" min="1900.0" minorTickCount="5" prefHeight="55.0" prefWidth="255.0" showTickLabels="true" showTickMarks="true" value="1900.0" visible="false" />
                                        </children>
                                     </HBox>
                                     <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
@@ -72,13 +75,14 @@
                                     <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                                        <children>
                                           <Label fx:id="yearlabel" prefHeight="54.0" prefWidth="310.0" text="year" visible="false" />
-                                          <Label fx:id="yearTolabel" prefHeight="58.0" prefWidth="291.0" text="yearTo" visible="false" />
+                                          <Button mnemonicParsing="false" text="Button" visible="false" />
+                                          <Label fx:id="yearTolabel" prefHeight="58.0" prefWidth="287.0" text="yearTo" visible="false" />
                                        </children>
                                     </HBox>
                                     <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
                                        <children>
                                           <TextField fx:id="fieldText" prefHeight="45.0" prefWidth="401.0" visible="false" />
-                                          <Button mnemonicParsing="false" onAction="#openLaureate" prefHeight="60.0" prefWidth="183.0" text="Show Bio" />
+                                          <Button fx:id="showbio" mnemonicParsing="false" onAction="#openLaureate" prefHeight="60.0" prefWidth="183.0" text="Show Bio" visible="false" />
                                        </children>
                                     </HBox>
                                  </children>

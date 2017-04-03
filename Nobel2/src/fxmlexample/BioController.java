@@ -15,7 +15,7 @@ import javafx.scene.image.ImageView;
 
 /**
  * FXML Controller class
- *
+ * A class to bring up the biography page for a specific laureate.
  * @author Graham
  */
 public class BioController implements Initializable {
@@ -28,6 +28,11 @@ public class BioController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
     }    
+    /**
+     * Given a laureate object, it will find the appropriate picture
+     * from the nobelprize.org website
+     * @param chosen 
+     */
     public void picData(Laureate chosen){
         ImageCl image = new ImageCl(chosen.getCategory(), chosen.getYear(), chosen.getSurname().toLowerCase());
         String im = image.getURL();
@@ -35,6 +40,11 @@ public class BioController implements Initializable {
         System.out.println(im);
         pic4.setImage(image2);
    }
+    /**
+     * Given a laureate object it will fill in the appropriate labels
+     * on the popup window.
+     * @param chosen 
+     */
     public void fill(Laureate chosen){
         FieldT.setText(chosen.getCategory());
         MotifT.setText(chosen.getMotivation());
