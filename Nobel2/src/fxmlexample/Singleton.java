@@ -88,6 +88,11 @@ public class Singleton {
     return jsonObj;
     }
     
+    /* This is the method that the other files will be Calling
+       It checks to see if singlton has already been made, if so then
+       it will assign the call to it and if not it will create the 
+       JsonObject all over again.
+    */
     public static JsonObject getInstance(){
         if(singleton == null)
             try {
