@@ -30,7 +30,7 @@ public class JsonObject {
    private JsonObject js;
    public ArrayList<Integer> ID = new ArrayList<>();
    
-<<<<<<< HEAD
+
     /**
      * gets all the prizes in a specific year
      * @param year the year that is wanted for all the winners
@@ -60,16 +60,11 @@ public class JsonObject {
        return null;
    }
 
-=======
->>>>>>> origin/master
+
    /*
       When given an ID, returns the LaureatesClass Object that
       Identifies with it, if can't find returns null
    */
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
    public LaureatesClass getLaur(int ID){
        js = Singleton.getInstance();
        for(int i = 0; i < js.laureates.size(); i++){

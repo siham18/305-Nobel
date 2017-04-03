@@ -23,7 +23,7 @@ public class PrizesClass {
     public String surname;
     public  ArrayList<LaureatesClass> laureates = new ArrayList<>();
      
-<<<<<<< HEAD
+
     
     /*
     checks to make sure you have the right laureate
@@ -57,7 +57,7 @@ public class PrizesClass {
          return list;
      }
     
-<<<<<<< HEAD
+
      // when given a list, it will populate it with all the laureates 
     public ArrayList <LaureatesClass> getLaureateList(ArrayList <LaureatesClass> list){
         
@@ -75,14 +75,17 @@ public class PrizesClass {
         for(int i = 0; i < this.laureates.size(); i++){
            list.add(this.laureates.get(i));
            
-=======
+        }
+        return list;
+    }
+
     /*
         Returns the list of laureates.
     */
-    public ArrayList <LaureatesClass> getLaureateList(ArrayList <LaureatesClass> list){
+    public ArrayList <LaureatesClass> getLaureatesList(ArrayList <LaureatesClass> list){
         for(int i = 0; i < this.laureates.size(); i++){
            list.add(this.laureates.get(i));
->>>>>>> origin/master
+
         }
         
         return list;
