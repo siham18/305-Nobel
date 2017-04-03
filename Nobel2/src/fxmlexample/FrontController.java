@@ -26,7 +26,12 @@ public class FrontController implements Initializable {
     @FXML public ImageView im2;
     @FXML public ImageView im1;
 
-    //Open General
+     /**
+     * Opens the General search form
+     * @param event the mouse click
+     * @throws Exception
+     * @author Graham
+     */
     @FXML public void openGeneral(ActionEvent event) throws Exception{
         FXMLLoader fxml = new FXMLLoader(getClass().getResource("NewWindow.fxml"));
         Parent queryResult = (Parent)fxml.load();
@@ -37,7 +42,12 @@ public class FrontController implements Initializable {
         stage.show();
     }
     
-    //Open Laureate
+     /**
+     * Opens the Laureates search form
+     * @param event the mouse click
+     * @throws Exception
+     * @author Siham
+     */
      @FXML public void openLaureate(ActionEvent event) throws Exception{
         FXMLLoader fxml = new FXMLLoader(getClass().getResource("LaureateSearch.fxml"));
         Parent queryResult = (Parent)fxml.load();
