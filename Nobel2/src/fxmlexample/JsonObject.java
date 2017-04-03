@@ -33,7 +33,15 @@ public class JsonObject {
            }
        }
    }
-   
+   public String getLaurYear(int ID){
+       js = Singleton.getInstance();
+       for(int i = 0; i < js.laureates.size(); i++){
+           if(js.laureates.get(i).id == ID){
+               return js.laureates.get(i).year;
+           }
+       }
+       return null;
+   }
    public LaureatesClass getLaur(int ID){
        js = Singleton.getInstance();
        for(int i = 0; i < js.laureates.size(); i++){

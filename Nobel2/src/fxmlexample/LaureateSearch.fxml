@@ -25,8 +25,8 @@
          </font>
       </Text>
       <Button fx:id="back" layoutX="12.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" prefHeight="27.0" prefWidth="85.0" text="Back" />
-      <Button fx:id="open" layoutX="448.0" layoutY="167.0" mnemonicParsing="false" onAction="#getValues" prefHeight="49.0" prefWidth="105.0" text="open" />
-      <Button fx:id="search" layoutX="287.0" layoutY="167.0" mnemonicParsing="false" onAction="#openLaureate" prefHeight="49.0" prefWidth="113.0" text="Search" />
+      <Button fx:id="open" layoutX="448.0" layoutY="167.0" mnemonicParsing="false" onAction="#openLaureate" prefHeight="49.0" prefWidth="105.0" text="open" />
+      <Button fx:id="search" layoutX="287.0" layoutY="167.0" mnemonicParsing="false" onAction="#getValues" prefHeight="49.0" prefWidth="113.0" text="Search" />
       <ChoiceBox fx:id="Dropdown" layoutX="414.0" layoutY="124.0" prefWidth="150.0" />
    </children>
 </Pane>

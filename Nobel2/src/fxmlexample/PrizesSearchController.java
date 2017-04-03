@@ -48,6 +48,7 @@ public class PrizesSearchController implements Initializable {
     @FXML private Button search;
     @FXML public ChoiceBox numLau;
     @FXML private ListView<String> list;
+    @FXML private ListView<String> extraList;
 //    @FXML private TableColumn pCat;
 //    @FXML private TableColumn pSharing;
 //    @FXML private TableColumn pLau;
@@ -58,12 +59,12 @@ public class PrizesSearchController implements Initializable {
     public String cCategory;
     public ArrayList<LaureatesClass> cLau;
     public Laureate data;
+    public String temp;
     
     private JsonObject singleton;
     
     ObservableList<String> lCategory = FXCollections.observableArrayList(
             "physics", "peace", "literature", "economics", "medicine", "chemistry");
-    //ObservableList<String> lSharing = FXCollections.observableArrayList("1", "2","3","4");
     public ObservableList<PrizesClass> prizesList = FXCollections.observableArrayList();
     ObservableList<PrizesClass> everyoneList = FXCollections.observableArrayList();
 
@@ -93,31 +94,7 @@ public class PrizesSearchController implements Initializable {
         stage.setScene(newScene);
         stage.show();
     }
-    
-    /**
-     * Displays the found data and fills the columns
-     * @param event the mouse click
-     * @throws Exception
-     */
-    @FXML public void search(ActionEvent event) throws Exception{
-      correctInput();
-      
-    }
-    
-    public void fillList() throws IOException, IOException, MalformedURLException, ParseException, IllegalArgumentException, IllegalAccessException{
-        everyoneList.clear();
-        fetchData();
-        
-    }
-    
-    public ArrayList<PrizesClass> fetchData(){
-        int len = singleton.prizes.size();
-        for(int i = 0; i <= len; i++){
-            everyoneList.add(singleton.prizes.get(i));
-        }
-        //System.out.println("Prizes: " + PrizesClass.getCategory());
-        return singleton.prizes;
-    }
+
     /**
      * Makes sure the given input is all correct, otherwise sets to null
      */
@@ -143,53 +120,74 @@ public class PrizesSearchController implements Initializable {
     
     }
     
+    /**
+     * Gets the laureates from the prizes class
+     */
     public void getLau(){
         everyoneList = singleton.getPrizes(cYearTo, cCategory);
         System.out.println("EveryoneList: " + everyoneList);
-        //Prizes prize = new Prizes((JSONObject) singleton);
-        System.out.println("Prizes: " );
+       
     }
    
-    public boolean getYear(int year){
-        int sYearFrom = Integer.parseInt(cYearFrom);
-        
-        if(cYearFrom == null){
-            sYearFrom = 0;
-        }
-        int sYearTo = Integer.parseInt(cYearTo);
-        
+    /**
+     * Gets the year for the laureate given
+     * @param lau the laureate that needs its year
+     * @return the year for the laureate
+     */
+    public String getYear(String lau){
+        String year = null;
+        ArrayList <LaureatesClass> laur = singleton.getLaureateList(cYearTo, cCategory);
         if(cYearTo == null){
-            sYearTo = 0;
+            for(int i = 0; i < singleton.laureates.size(); i++){
+                int id = singleton.getLastId();
+                year = singleton.getLaurYear(id);
+                return year;
+            }
         }
-        return year >= sYearFrom && year <= sYearTo;
-    }
-    
-    public PrizesClass getCat(){
-        LaureatesClass laureate = singleton.getLaur(singleton.getLastId());
-        PrizesClass prize = singleton.getPrize(laureate);
-        return prize;
+        else{
+            year = yearTo.toString();
+        }
+        return year;
     }
 
+    /**
+     * The search button is connected to it; gets and displays everything to the list
+     * @param event mouse click
+     * @throws Exception
+     */
     @FXML public void getData(ActionEvent event)throws Exception{
         correctInput();
+        //Makes sure there is input in the yearTo field
+        if(cYearTo == null){
+            cYearTo = "2016";
+        }
         
+        // creates lists for parsing
         ArrayList <LaureatesClass> laur = singleton.getLaureateList(cYearTo, cCategory);
-        ObservableList <String> LaurList = FXCollections.observableArrayList();
+        ObservableList <String> LaurList = FXCollections.observableArrayList(); // the list with the names of the laureates
+        ObservableList <String> extraLaurList = FXCollections.observableArrayList(); // the list for the laureates other info
         
-        
-          for(int i = 0; i < laur.size(); i++){
-              System.out.println(laur.get(i).surname);
+        // goes through all the laureates
+        for(int i = 0; i < laur.size(); i++){
+            
+            //Checks if thers a surname or not and if not will just add the 
+            // first name to the list to display
             if(laur.get(i).surname == null){
                 LaurList.add(laur.get(i).firstname );
                 System.out.println(laur.get(i).motivation);
-            }
-            else
-                LaurList.add(laur.get(i).firstname + " " + laur.get(i).surname );
-          }
-          list.setItems(LaurList);
-    }
+                extraLaurList.add(cCategory + "-----" + cYearTo);
+        }
+        else{
+            LaurList.add(laur.get(i).firstname + " " + laur.get(i).surname );
+            extraLaurList.add(cCategory+ "-----" + cYearTo);
+        }
+        // displays the lists to their listViews
+        list.setItems(LaurList);
+        extraList.setItems(extraLaurList);
+        }
         
-        
+    }   
+    
     
     
     
