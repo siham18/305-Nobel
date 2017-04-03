@@ -10,7 +10,9 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 /**
- *
+ * A class made before GSON was discovered. It takes
+ * a JSONObject and finds all the necessary fields and makes
+ * a laureate object out of its findings.
  * @author Graham
  */
 public class Laureate {
@@ -98,6 +100,11 @@ public class Laureate {
             return false;
         return equality;
     }
+    /**
+     * 
+     * @throws IllegalArgumentException
+     * @throws IllegalAccessException 
+     */
     public void setLaureate() throws IllegalArgumentException, IllegalAccessException{
         Field[] fields = this.getClass().getDeclaredFields();
         for (Field f : fields){
@@ -105,46 +112,88 @@ public class Laureate {
                 f.set(this, "0");
         }
     }
+    /**
+     * @returns the share variable 
+     */
     public String getShare(){
         return share;
     }
+    /**
+     * @returns the category variable 
+     */
     public String getCategory(){
         return category;
     }
+    /**
+     * @returns the year variable 
+     */
     public String getYear(){
         return year;
     }
+    /**
+     * @returns the firstname variable 
+     */
     public String getFirstname(){
         return firstname;
     }
+    /**
+     * @returns the surname variable 
+     */
     public String getSurname(){
         return surname;
     }
+    /**
+     * @returns the bornCountry variable 
+     */
     public String getBornCountry(){
         return bornCountry;
     }
+    /**
+     * @returns the bornCity variable 
+     */
     public String getBornCity(){
         return bornCity;
     }
    
+    /**
+     * @returns the diedcountry variable 
+     */
     public String getDiedCountry(){
         return diedCountry;
     }
+    /**
+     * @returns the diedcity variable 
+     */
     public String getDiedCity(){
         return diedCity;
     }
+    /**
+     * @returns the borndate variable 
+     */
     public String getBornDate(){
         return bornDate;
     }
+    /**
+     * @returns the diedDate variable 
+     */
     public String getDiedDate(){
         return diedDate;
     }
+    /**
+     * @returns the motivation variable 
+     */
     public String getMotivation(){
         return motivation;
     }
+    /**
+     * @returns the gender variable 
+     */
     public String getGender(){
         return gender;
     }
+    /**
+     * @returns the Affiliation variable 
+     */
     public String getAffiliation(){
         return affiliation;
     }
