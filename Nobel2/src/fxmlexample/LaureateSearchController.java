@@ -27,9 +27,13 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
- * FXML Controller class
- *
- * @author Siham
+ * 
+ * @author Siham Salah
+ * This is where the main Search happens for Laureate and where
+ *  the page comes up after the Laureate button is clicked on the front Page.
+ *  It contains two buttons, one for searching the list of laureates that is specified
+ *  at in the text boxes, and one for popping up the laureate box that gives information
+ *  about the laureate.
  */
 public class LaureateSearchController implements Initializable{
 
@@ -54,26 +58,35 @@ public class LaureateSearchController implements Initializable{
     @FXML private TableView <LaureatesClass> tableView;
     @FXML private TableColumn <LaureatesClass, String> name, lastname, motivation;
     
-    //Sets the Dropdown and gets access to the JsonObject 
+    /*
+        Sets the Dropdown menue to the variables in the array names, then
+        sets singleton to the Json Object from the startup of the application
+    */ 
     @FXML public void initialize(URL urll, ResourceBundle rb){
        Dropdown.setItems(names);
        Dropdown.setValue("peace");
        singleton = Singleton.getInstance();  
     }
     
-    //Parse and check for proper input.
+    /*
+        This is where the input selected for Year is parsed and
+        the is stored in the globale variables
+    */
     public void listv(){
-        
        if(year.getText().trim().isEmpty() || year.getText() == null || 
              year.getText().length() > 4 || year.getText().length() < 4){
            chosenY = null;
        }
-       else{
+       else
             chosenY = year.getText();
-       }
+        
       chosenC = Dropdown.getValue().toString();
     }
     
+    /*
+      This method is called when the user wants to go back to
+      the main page.
+    */
     @FXML public void back(ActionEvent event) throws Exception{
     
         FXMLLoader fxml = new FXMLLoader(getClass().getResource("Front.fxml"));
@@ -85,10 +98,17 @@ public class LaureateSearchController implements Initializable{
         stage.show();
     }
      
+    /*
+        This Method is called when the user clicks on a laureate and 
+        Wants to know more information from them. It opens winner.fxml
+        in an extra window and adds the ID of the laurete they would like to
+        see to an array in the JsonObject that will be referenced later in Winner.
+    */
       @FXML public void openLaureate(ActionEvent event) throws Exception{
 
         String temp = listView.getSelectionModel().getSelectedItems().toString();
         
+          //If the Laureate cannot be found
         int tempp = singleton.searchId(temp);
         if(tempp == 0){
             System.out.println("Cant find id" + temp);
@@ -103,7 +123,11 @@ public class LaureateSearchController implements Initializable{
         stage.setScene(new Scene(root1));  
         stage.show();
     }
-      
+      /*
+        This method populates the lsit view, it takes the input from listv()
+        then searches for the list of Laureates that corespond to the 
+        that search and places them into the table/
+      */
       @FXML public void getValues(ActionEvent event) throws Exception{
           listv();
           
