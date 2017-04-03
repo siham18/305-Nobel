@@ -7,6 +7,7 @@ package fxmlexample;
 import fxmlexample.LaureatesClass;
 import java.util.ArrayList;
 import fxmlexample.LaureatesClass;
+import javafx.collections.ObservableList;
 /**
  *
  * @author Siham
@@ -16,6 +17,8 @@ public class PrizesClass {
     public int year;
     public int yearTo;
     public String category;
+    public String firstname;
+    public String surname;
     public  ArrayList<LaureatesClass> laureates = new ArrayList<>();
     //public ArrayList<Laureates> laureates = new ArrayList<>();
      
@@ -40,9 +43,21 @@ public class PrizesClass {
         //System.out.println("In func");
         for(int i = 0; i < this.laureates.size(); i++){
            list.add(this.laureates.get(i));
-           System.out.println(this.laureates.get(i).firstname);
+           //System.out.println(this.laureates.get(i).firstname);
         }
         
         return list;
     }
+    
+    public ObservableList getLauList(ObservableList list){
+        //System.out.println("In func");
+        for(int i = 0; i < this.laureates.size(); i++){
+           list.add(this.laureates.get(i));
+           //System.out.println(this.laureates.get(i).firstname);
+        }
+        
+        return list;
+    }
+    
+    
 }

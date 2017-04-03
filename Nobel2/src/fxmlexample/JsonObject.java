@@ -10,6 +10,8 @@ import fxmlexample.LaureatesClass;
 import fxmlexample.PrizesClass;
 import fxmlexample.Singleton;
 import java.util.ArrayList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -121,17 +123,33 @@ public class JsonObject {
    
    /**
      *
+     * @param year
+     * @param Category
      * @return a list of all the laureates
      * @author kimelkins
      */
-    public ArrayList<LaureatesClass> getLaureates(){
-        js = Singleton.getInstance();
-        int len = js.prizes.size();
-        
-        ArrayList <LaureatesClass> list = new ArrayList <>();
-        for(int i = 0; i < len; i++){
-            list = js.prizes.get(i).getLaureateList(list);
-        }
-        return list;
+    public ObservableList<PrizesClass> getPrizes(String year, String Category){
+       js = Singleton.getInstance();
+       int len = js.prizes.size();
+       
+       ObservableList <PrizesClass> list = FXCollections.observableArrayList();
+       if(year == null){
+           for(int i = 0; i < len; i++){
+               if(js.prizes.get(i).category.equals(Category)){
+                   list = js.prizes.get(i).getLauList(list);
+               }
+           }
+           return list;
+       }
+       else{
+            for(int i = 0; i < len; i++){
+           String year2 = "" + this.prizes.get(i).year;
+           if(js.prizes.get(i).category.equals(Category) && year2.equals(year)){
+                   list = js.prizes.get(i).getLauList(list);
+               }
+            }
+            return list;
+       } 
     }
+    
 }

@@ -29,7 +29,7 @@ public class LaureatesClass {
     public String gender;
     public String affiliation;
     public int share;
-    public int year;
+    public String year;
     public String category;
     //public ArrayList<> prizes;
 }

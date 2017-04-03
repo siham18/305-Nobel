@@ -5,6 +5,8 @@
  */
 package fxmlexample;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -23,6 +25,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
 
 
 /**
@@ -43,11 +47,11 @@ public class PrizesSearchController implements Initializable {
     @FXML private Button open;
     @FXML private Button search;
     @FXML public ChoiceBox numLau;
-    @FXML private ListView list;
-    @FXML private TableColumn pCat;
-    @FXML private TableColumn pSharing;
-    @FXML private TableColumn pLau;
-    @FXML private TableColumn pYear;
+    @FXML private ListView<String> list;
+//    @FXML private TableColumn pCat;
+//    @FXML private TableColumn pSharing;
+//    @FXML private TableColumn pLau;
+//    @FXML private TableColumn pYear;
         
     public String cYearFrom;
     public String cYearTo;
@@ -58,32 +62,19 @@ public class PrizesSearchController implements Initializable {
     private JsonObject singleton;
     
     ObservableList<String> lCategory = FXCollections.observableArrayList(
-            "Physics", "Peace", "Literature", "Economics", "Medicine", "Chemistry");
+            "physics", "peace", "literature", "economics", "medicine", "chemistry");
     //ObservableList<String> lSharing = FXCollections.observableArrayList("1", "2","3","4");
-    public ObservableList prizesList = FXCollections.observableArrayList();
-    
+    public ObservableList<PrizesClass> prizesList = FXCollections.observableArrayList();
+    ObservableList<PrizesClass> everyoneList = FXCollections.observableArrayList();
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        
         // Initializes the choiceboxes
-        
-//        catagory.getItems().clear();
-//        catagory.getItems().addAll("Physics", "Peace", "Literature", "Economics", "Medicine", "Chemistry");
         catagory.setItems(lCategory);
         catagory.setValue("Physics");
-//        numLau.getItems().clear();
-//        numLau.getItems().addAll("1", "2","3","4");
-        //numLau.setItems(lSharing);
-        //numLau.setValue("1");
         
         singleton = Singleton.getInstance(); 
-        
-        pCat.setCellValueFactory(new PropertyValueFactory("categoryCol"));
-        //pSharing.setCellValueFactory(new PropertyValueFactory("sharingCol"));
-        pLau.setCellValueFactory(new PropertyValueFactory("laureateCol"));
-        pYear.setCellValueFactory(new PropertyValueFactory("yearWonCol"));
-        //pYearFrom.setCellValueFactory(new PropertyValueFactory("yearFromCol"));
-        
     } 
     
     /**
@@ -111,26 +102,29 @@ public class PrizesSearchController implements Initializable {
     @FXML public void search(ActionEvent event) throws Exception{
       correctInput();
       
-      
-      
     }
     
-    /**
-     * Opens up the selected laureates information
-     * @param event
-     * @throws Exception
-     */
-    @FXML public void open(ActionEvent event) throws Exception{
+    public void fillList() throws IOException, IOException, MalformedURLException, ParseException, IllegalArgumentException, IllegalAccessException{
+        everyoneList.clear();
+        fetchData();
         
     }
-
+    
+    public ArrayList<PrizesClass> fetchData(){
+        int len = singleton.prizes.size();
+        for(int i = 0; i <= len; i++){
+            everyoneList.add(singleton.prizes.get(i));
+        }
+        //System.out.println("Prizes: " + PrizesClass.getCategory());
+        return singleton.prizes;
+    }
     /**
      * Makes sure the given input is all correct, otherwise sets to null
      */
     public void correctInput(){
     
         if(yearTo.getText().trim().isEmpty() || yearTo.getText() == null ||
-            yearTo.getText().length() == 4){
+            yearTo.getText().length() > 4 || yearTo.getText().length() < 4){
             cYearTo = null;
         }
         else{
@@ -138,24 +132,24 @@ public class PrizesSearchController implements Initializable {
         }
     
         if(yearFrom.getText().trim().isEmpty() || yearFrom.getText() == null ||
-            yearFrom.getText().length() == 4){
+            yearFrom.getText().length() > 4 || yearFrom.getText().length() < 4){
             cYearFrom = null;
         }   
         else{
             cYearFrom = yearFrom.getText();
         }
     
-        //cSharing = numLau.getValue().toString();
         cCategory = catagory.getValue().toString();
     
     }
     
-    
-    public ArrayList<LaureatesClass> getLau(){
-        return singleton.getLaureates();
-        
+    public void getLau(){
+        everyoneList = singleton.getPrizes(cYearTo, cCategory);
+        System.out.println("EveryoneList: " + everyoneList);
+        //Prizes prize = new Prizes((JSONObject) singleton);
+        System.out.println("Prizes: " );
     }
-    
+   
     public boolean getYear(int year){
         int sYearFrom = Integer.parseInt(cYearFrom);
         
@@ -169,29 +163,35 @@ public class PrizesSearchController implements Initializable {
         }
         return year >= sYearFrom && year <= sYearTo;
     }
-
-    public void getData(){
-        ObservableList dataList = FXCollections.observableArrayList();
-        ArrayList<LaureatesClass> laur = getLau();
-        int len = laur.size();
-        
-        for(int i = 0; i < len; i++){
-            if(laur.get(i).category.equals(cCategory) && getYear(laur.get(i).year)){
-                String name = laur.get(i).firstname + " " + laur.get(i).surname;
-                pCat.getColumns().add(laur.get(i).category);
-                pLau.getColumns().add(name);
-                pYear.getColumns().add(laur.get(i).year);
-                //dataList.add(laur.get(i).category);
-                //dataList.add(name);
-                //dataList.add(laur.get(i).year);
-                
-            }
-            //prizesList.add(dataList);
-            //dataList = null;
-        }
-        
-        
+    
+    public PrizesClass getCat(){
+        LaureatesClass laureate = singleton.getLaur(singleton.getLastId());
+        PrizesClass prize = singleton.getPrize(laureate);
+        return prize;
     }
+
+    @FXML public void getData(ActionEvent event)throws Exception{
+        correctInput();
+        
+        ArrayList <LaureatesClass> laur = singleton.getLaureateList(cYearTo, cCategory);
+        ObservableList <String> LaurList = FXCollections.observableArrayList();
+        
+        
+          for(int i = 0; i < laur.size(); i++){
+              System.out.println(laur.get(i).surname);
+            if(laur.get(i).surname == null){
+                LaurList.add(laur.get(i).firstname );
+                System.out.println(laur.get(i).motivation);
+            }
+            else
+                LaurList.add(laur.get(i).firstname + " " + laur.get(i).surname );
+          }
+          list.setItems(LaurList);
+    }
+        
+        
+    
+    
     
     @FXML public void openLaureate(ActionEvent event) throws Exception{
         
@@ -212,7 +212,5 @@ public class PrizesSearchController implements Initializable {
         stage.setScene(new Scene(root1));  
         stage.show();
     }
-    public void setData(){
-        
-    }
+    
 }
