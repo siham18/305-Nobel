@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Nobel.jar" size="37366" download="eager" />
+    <jar href="Nobel.jar" size="42252" download="eager" />
     <jar href="lib\gson-2.2.2.jar" size="189285" download="eager" />
     <jar href="lib\json-simple-1.1.1.jar" size="23931" download="eager" />
   </resources>

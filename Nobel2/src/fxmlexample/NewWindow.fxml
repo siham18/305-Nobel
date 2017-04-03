@@ -28,7 +28,7 @@
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <children>
-                              <ListView fx:id="choices" onMouseClicked="#fillValue" prefHeight="192.0" prefWidth="1198.0" AnchorPane.bottomAnchor="20.0" />
+                              <ListView fx:id="choices" onMouseClicked="#fillValue" prefHeight="192.0" prefWidth="1198.0" AnchorPane.bottomAnchor="20.0" AnchorPane.topAnchor="20.0" />
                            </children>
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">

@@ -13,7 +13,7 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="487.0" prefWidth="423.0">
                <children>
-                  <ImageView fx:id="pic4" fitHeight="231.0" fitWidth="213.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="pic4" fitHeight="231.0" fitWidth="196.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
                   <Label layoutX="226.0" layoutY="21.0" prefHeight="49.0" prefWidth="76.0" text="Facts:" underline="true">
                      <font>
                         <Font size="21.0" />
@@ -23,9 +23,9 @@
                   <Label fx:id="MotifT" layoutX="232.0" layoutY="245.0" prefHeight="241.0" prefWidth="194.0" text="Label" wrapText="true" />
                   <Label fx:id="FieldT" layoutX="310.0" layoutY="172.0" prefHeight="76.0" prefWidth="140.0" text="Label" wrapText="true" />
                   <Label layoutX="228.0" layoutY="85.0" prefHeight="22.0" prefWidth="63.0" text="Born: " />
-                  <Label layoutX="228.0" layoutY="130.0" prefHeight="17.0" prefWidth="62.0" text="Country:" />
-                  <Label layoutX="227.0" layoutY="215.0" prefHeight="17.0" prefWidth="74.0" text="Motivation:" />
-                  <Label layoutX="228.0" layoutY="172.0" prefHeight="17.0" prefWidth="63.0" text="Category:" />
+                  <Label layoutX="210.0" layoutY="130.0" prefHeight="21.0" prefWidth="80.0" text="Country:" />
+                  <Label layoutX="203.0" layoutY="210.0" prefHeight="21.0" prefWidth="98.0" text="Motivation:" />
+                  <Label layoutX="206.0" layoutY="172.0" prefHeight="21.0" prefWidth="85.0" text="Category:" />
                </children>
             </AnchorPane>
         </content>
