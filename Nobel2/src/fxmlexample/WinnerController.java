@@ -30,26 +30,27 @@ import fxmlexample.LaureatesClass;
 import fxmlexample.PrizesClass;
 
 /**
- * FXML Controller class
  *
  * @author Siham
+ *  -WinnerController is the bio that pops up when a laurete is
+ * being searched in LaureatesClass.
  */
 public class WinnerController implements Initializable {
 
     @FXML
     private ImageView pic4;
     @FXML public Label namef, FieldT, MotifT, ResT, bornT, title;
-    //@FXML private Text namef;
     @FXML public LaureatesClass laur;
     @FXML public PrizesClass prize;
     JsonObject singleton;
     public static int ID;
-    /**
-     * Initializes the controller class.
-     */
     
+    /**
+     * fill(): Initializes the controller class and updates the 
+     * information in the window from the laureate. If there is nothing in the laureate
+     * places a null instead.
+     */
     public void fill(){
-        
         singleton = Singleton.getInstance();
         laur = singleton.getLaur(singleton.getLastId());
         System.out.println(" -- " + laur.firstname + " -- ");
@@ -62,9 +63,13 @@ public class WinnerController implements Initializable {
         title.setText(laur.firstname + " "+laur.surname);
     }
     
+    /*
+        Calls Fill and also checks for any changes needing to be made
+        in the name that is being searched to set the Image.
+    */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+       
         fill();
         if(prize!= null){
             String n = laur.surname;
@@ -76,6 +81,7 @@ public class WinnerController implements Initializable {
             }
             ImageCl image = new ImageCl(prize.category, ""+prize.year, n.toLowerCase());
             
+            //Sets the image 
             String im = image.getURL();
             System.out.println(im);
             Image image2 = new Image(im);
