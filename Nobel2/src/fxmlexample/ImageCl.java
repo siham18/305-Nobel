@@ -9,7 +9,10 @@ import java.net.URL;
 import java.net.URLConnection;
 
 /**
- *
+ * Object: ImageCl
+ *  - used by LaureatesClass, Bio and other files to grab the 
+ *    specific image URL for a Laureate. Uses the year, last name, and 
+ *    category to build the URL then returns the final in getURL();
  * @author Siham
  */
 public class ImageCl {
@@ -19,6 +22,9 @@ public class ImageCl {
     public String category;
     public String Beginning;
     
+    /*
+     * Sets the variables at call. 
+     */
     ImageCl(String c, String y, String n){
         this.Beginning = "https://www.nobelprize.org//nobel_prizes/";
         this.year = y;
@@ -31,6 +37,7 @@ public class ImageCl {
         then the url for their organiztions image goes by the abbreiviation.
     
         therefore added the extra if statment here.
+        Returns the URL string for the Laureate specified 
     */
     public String getURL(){
         String url;
@@ -39,18 +46,11 @@ public class ImageCl {
             int end = this.name.indexOf(")");
             String temp = this.name.substring(start+1, end);
             this.name = temp.toLowerCase();
-            System.out.println(this.name);
         }
         
         url = this.Beginning  +this.category +
                 "/laureates/" + this.year + "/" + this.name + "_postcard.jpg";
         
-       
         return url;
-    }
-    
-    public void getLaureateInfo(){
-        
-    
     }
 }
