@@ -7,17 +7,11 @@ package fxmlexample;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import fxmlexample.JsonObject;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.fxml.FXML;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import fxmlexample.JsonObject;
 import org.json.simple.parser.JSONParser;
 
 /**

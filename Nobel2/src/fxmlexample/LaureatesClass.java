@@ -31,5 +31,5 @@ public class LaureatesClass {
     public int share;
     public String year;
     public String category;
-    //public ArrayList<> prizes;
+    
 }

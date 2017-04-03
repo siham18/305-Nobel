@@ -30,8 +30,12 @@ public class JsonObject {
    private JsonObject js;
    public ArrayList<Integer> ID = new ArrayList<>();
    
-<<<<<<< HEAD
-   public void getPrizesAtYear(int year){
+    /**
+     * gets all the prizes in a specific year
+     * @param year the year that is wanted for all the winners
+     * @author kimelkins
+     */
+    public void getPrizesAtYear(int year){
        int size = this.prizes.size();
        for(int i=0; i< size; i++){
            if (this.prizes.get(i).year == year){
@@ -39,7 +43,13 @@ public class JsonObject {
            }
        }
    }
-   public String getLaurYear(int ID){
+   
+    /**
+     * When given an ID, will find the laureates year associated with that id
+     * @param ID the laureates id being looked for
+     * @return the laureates year
+     */
+    public String getLaurYear(int ID){
        js = Singleton.getInstance();
        for(int i = 0; i < js.laureates.size(); i++){
            if(js.laureates.get(i).id == ID){
@@ -48,12 +58,12 @@ public class JsonObject {
        }
        return null;
    }
-=======
+
    /*
       When given an ID, returns the LaureatesClass Object that
       Identifies with it, if can't find returns null
    */
->>>>>>> origin/master
+
    public LaureatesClass getLaur(int ID){
        js = Singleton.getInstance();
        for(int i = 0; i < js.laureates.size(); i++){
@@ -170,9 +180,10 @@ public class JsonObject {
     }
    
    /**
-     *
-     * @param year
-     * @param Category
+     * Creates a list of PrizesClass containing the laureates associated
+     * with the year and category given
+     * @param year the year being used to search
+     * @param Category the category being used to search
      * @return a list of all the laureates
      * @author kimelkins
      */
@@ -181,6 +192,8 @@ public class JsonObject {
        int len = js.prizes.size();
        
        ObservableList <PrizesClass> list = FXCollections.observableArrayList();
+       
+       //If the year is empty then just look for mathcing categories
        if(year == null){
            for(int i = 0; i < len; i++){
                if(js.prizes.get(i).category.equals(Category)){
@@ -189,6 +202,8 @@ public class JsonObject {
            }
            return list;
        }
+       
+       //If year and category are specified, then search for both
        else{
             for(int i = 0; i < len; i++){
            String year2 = "" + this.prizes.get(i).year;

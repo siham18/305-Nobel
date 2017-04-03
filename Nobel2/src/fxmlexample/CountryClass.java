@@ -6,7 +6,7 @@
 package fxmlexample;
 
 /**
- *
+ * The class to get the countries information
  * @author Siham
  */
 public class CountryClass {

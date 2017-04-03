@@ -5,13 +5,9 @@
  */
 package fxmlexample;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,11 +18,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.ParseException;
+
 
 
 /**
@@ -49,10 +42,6 @@ public class PrizesSearchController implements Initializable {
     @FXML public ChoiceBox numLau;
     @FXML private ListView<String> list;
     @FXML private ListView<String> extraList;
-//    @FXML private TableColumn pCat;
-//    @FXML private TableColumn pSharing;
-//    @FXML private TableColumn pLau;
-//    @FXML private TableColumn pYear;
         
     public String cYearFrom;
     public String cYearTo;
@@ -138,7 +127,7 @@ public class PrizesSearchController implements Initializable {
         String year = null;
         ArrayList <LaureatesClass> laur = singleton.getLaureateList(cYearTo, cCategory);
         if(cYearTo == null){
-            for(int i = 0; i < singleton.laureates.size(); i++){
+            for (LaureatesClass laureate : singleton.laureates) {
                 int id = singleton.getLastId();
                 year = singleton.getLaurYear(id);
                 return year;
@@ -188,9 +177,11 @@ public class PrizesSearchController implements Initializable {
         
     }   
     
-    
-    
-    
+    /**
+     * Opens the selected laureates bio
+     * @param event mouse click
+     * @throws Exception
+     */
     @FXML public void openLaureate(ActionEvent event) throws Exception{
         
 
