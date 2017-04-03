@@ -59,12 +59,12 @@ public class NewWindowController implements Initializable{
     @FXML private TextField fieldText;
     @FXML private Slider date, dateTo;
     @FXML private ComboBox comboField;
-    @FXML private TableColumn<Laureate, String> genderCol, ageCol, yearCol, categoryCol, bornDateCol,
+    @FXML private TableColumn<Laureate, String> genderCol, yearCol, categoryCol, bornDateCol,
             diedDateCol, bornCountryCol, diedCountryCol, bornCityCol,
             diedCityCol, firstnameCol, surnameCol;
     
     ObservableList<String> content = FXCollections.observableArrayList(
-            "gender", "year", "category", "bornIn", "diedIn", 
+            "gender", "year", "category", "bornDate", "diedDate", 
             "bornCountry", "diedCountry", "bornCity", "diedCity", "firstname", "surname");
     /**
      * Takes control back to the frontpage
@@ -181,7 +181,6 @@ public class NewWindowController implements Initializable{
         url += getInput();
         
         URL nobelUrl = new URL(url);
-        System.out.println(url);
         URLConnection con = nobelUrl.openConnection();
         BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
         String inputLine;
@@ -210,6 +209,16 @@ public class NewWindowController implements Initializable{
                         Integer.valueOf(person.getYear()) <=(((int)Math.round(dateTo.getValue())))){
                     everyoneList.add(person);
                 }
+            } else if  ("bornDate".equals(choices.getSelectionModel().getSelectedItem())){
+                if(Integer.valueOf(person.getBornDate().substring(0,4)) >=(((int)Math.round(date.getValue()))) && 
+                        Integer.valueOf(person.getBornDate().substring(0,4)) <=(((int)Math.round(dateTo.getValue())))){
+                    everyoneList.add(person);
+                }
+            } else if  ("diedDate".equals(choices.getSelectionModel().getSelectedItem())){
+                if(Integer.valueOf(person.getDiedDate().substring(0,4)) >=(((int)Math.round(date.getValue()))) && 
+                        Integer.valueOf(person.getDiedDate().substring(0,4)) <=(((int)Math.round(dateTo.getValue())))){
+                    everyoneList.add(person);
+                }
             } else {
                 everyoneList.add(person);
             }
@@ -225,10 +234,10 @@ public class NewWindowController implements Initializable{
         if ("gender".equals(choices.getSelectionModel().getSelectedItem())){
             returnValue += "gender=" + gender.getSelectedToggle().getUserData();
         }
-        else if("bornIn".equals(choices.getSelectionModel().getSelectedItem())){
+        else if("bornDate".equals(choices.getSelectionModel().getSelectedItem())){
             returnValue += "bornDate=" + Math.round(date.getValue()) + "&bornDateTo=" + Math.round(dateTo.getValue());
         }
-        else if ("diedIn".equals(choices.getSelectionModel().getSelectedItem())){
+        else if ("diedDate".equals(choices.getSelectionModel().getSelectedItem())){
             returnValue += "diedDate=" + Math.round(date.getValue()) + "&diedDateTo=" + Math.round(dateTo.getValue());
         }
         else if ("firstname".equals(choices.getSelectionModel().getSelectedItem())){
@@ -300,6 +309,7 @@ public class NewWindowController implements Initializable{
                     showbio.setVisible(false);
                 }}
          });
+         
         choices.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
         @Override
         public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -326,7 +336,7 @@ public class NewWindowController implements Initializable{
                 female.setVisible(true);
                 org.setVisible(true);
             }
-            if ("bornIn".equals(newValue) || "diedIn".equals(newValue) || "year".equals(newValue)){
+            if ("bornDate".equals(newValue) || "diedDate".equals(newValue) || "year".equals(newValue)){
                 date.setVisible(true);
                 dateTo.setVisible(true);
                 yearlabel.setVisible(true);
