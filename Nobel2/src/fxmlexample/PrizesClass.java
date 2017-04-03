@@ -11,6 +11,8 @@ import javafx.collections.ObservableList;
 /**
  *
  * @author Siham
+ * PrizesClass: this is where the prizes informations are stored,
+    an array of this Object is listed in JsonObject
  */
 public class PrizesClass {
     
@@ -20,11 +22,16 @@ public class PrizesClass {
     public String firstname;
     public String surname;
     public  ArrayList<LaureatesClass> laureates = new ArrayList<>();
-    //public ArrayList<Laureates> laureates = new ArrayList<>();
      
+<<<<<<< HEAD
     
     /*
     checks to make sure you have the right laureate
+=======
+    /*
+        Returns true if the Laureate name is located in the
+        specific prize object
+>>>>>>> origin/master
     */
     public boolean getLaureate(String fname){
         for(int i = 0; i < this.laureates.size(); i++){
@@ -35,10 +42,14 @@ public class PrizesClass {
     }
     
     /*
+<<<<<<< HEAD
     gets a list of ID's and returns the list
+=======
+        Returns a list of Id's that are associated with
+        the specific prize class.
+>>>>>>> origin/master
     */
      public ArrayList<Integer> listOfID(){
-        
          ArrayList<Integer> list =  new ArrayList<>();
          for(int i =0; i< this.laureates.size(); i++){
              list.add(this.laureates.get(i).id);
@@ -46,6 +57,7 @@ public class PrizesClass {
          return list;
      }
     
+<<<<<<< HEAD
      // when given a list, it will populate it with all the laureates 
     public ArrayList <LaureatesClass> getLaureateList(ArrayList <LaureatesClass> list){
         
@@ -63,6 +75,14 @@ public class PrizesClass {
         for(int i = 0; i < this.laureates.size(); i++){
            list.add(this.laureates.get(i));
            
+=======
+    /*
+        Returns the list of laureates.
+    */
+    public ArrayList <LaureatesClass> getLaureateList(ArrayList <LaureatesClass> list){
+        for(int i = 0; i < this.laureates.size(); i++){
+           list.add(this.laureates.get(i));
+>>>>>>> origin/master
         }
         
         return list;

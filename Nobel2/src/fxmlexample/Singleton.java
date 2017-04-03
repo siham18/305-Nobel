@@ -15,8 +15,12 @@ import javafx.scene.image.Image;
 import org.json.simple.parser.JSONParser;
 
 /**
- *
  * @author Siham
+ *
+ * Singleton: Creates the Original JsonObject that is used 
+ * Throughout this project. Also loads images that are used in the 
+ * Front page. Creates a public static JsonObject then uses that for 
+ * all pages within the project
  */
 public class Singleton {
     
@@ -24,7 +28,9 @@ public class Singleton {
     public static Image image2;
     public static Image image1;
    
-    
+    // Makes Three calls to API, Prize, Laureate and Country
+    // Then creates a Gson Object to help convert it into The JsonObject
+    // That i have created
     static public JsonObject Singleton() throws Exception{
     URL url = new URL("http://api.nobelprize.org/v1/prize.json");
     JsonObject json = new JsonObject();
@@ -49,7 +55,9 @@ public class Singleton {
     BufferedReader in3 = new BufferedReader(new InputStreamReader(con3.getInputStream()));
     String inputLine3;
     inputLine3 = in3.readLine();
-    
+        
+    //This is where the Images are loaded from to place in the front page
+    // For design
     //-------------------------------------------------------
     String im = "http://blog.univ-reunion.fr/blogpapang/files/2016/10/nobelprizes.jpg";
     image2 = new Image(im);
@@ -59,6 +67,8 @@ public class Singleton {
     image1 = new Image(imm);
     
     //-----------------------------------------------------------
+        
+     //This is where the Gson builder uploads the singlton JsonObject
     Gson g = new GsonBuilder().setPrettyPrinting().create();
     
     JsonObject p = g.fromJson(inputLine2,JsonObject.class);
@@ -72,6 +82,11 @@ public class Singleton {
     return jsonObj;
     }
     
+    /* This is the method that the other files will be Calling
+       It checks to see if singlton has already been made, if so then
+       it will assign the call to it and if not it will create the 
+       JsonObject all over again.
+    */
     public static JsonObject getInstance(){
         if(singleton == null)
             try {
@@ -79,7 +94,6 @@ public class Singleton {
         } catch (Exception ex) {
             System.out.println("\n--------Something wrong with Singleton!!!------- \n " + ex);
         }
-        
         return singleton;
     }
     
